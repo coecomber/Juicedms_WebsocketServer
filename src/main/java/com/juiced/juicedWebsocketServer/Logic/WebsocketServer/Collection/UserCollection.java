@@ -1,5 +1,6 @@
 package com.juiced.juicedWebsocketServer.Logic.WebsocketServer.Collection;
 
+import com.juiced.juicedWebsocketServer.Logic.WebsocketServer.MessageHandler.MessageSender;
 import com.juiced.juicedWebsocketServer.Logic.WebsocketServer.Model.User;
 import org.eclipse.jetty.websocket.api.Session;
 
@@ -20,9 +21,9 @@ public class UserCollection {
         ConnectedUsers = connectedUsers;
     }
 
-    public static boolean CheckNotRegistered(User user){
+    public static boolean CheckNotRegistered(String username){
         for (User u : ConnectedUsers){
-            if(u.getUsername().equals(user.getUsername())){
+            if(u.getUsername().equals(username)){
                 return false;
             }
         }
@@ -50,6 +51,7 @@ public class UserCollection {
                     UserCollection.getConnectedUsers().remove(userToRemove);
                     session.close();
                     System.out.println(userToRemove.getUsername() + " removed.");
+                    MessageSender.UpdatePlayers();
                     userToRemove = null;
                 }
             }

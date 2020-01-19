@@ -29,9 +29,6 @@ public class WebSocketJetty
 
     @OnWebSocketError
     public void error(Session session, Throwable t){
-        System.out.println("On error called.");
-        System.out.println(session.toString());
-        System.out.println(session);
-        System.out.println(t.toString());
+        System.out.println("OnWebSocketError: " + t.toString());
     }
 }
