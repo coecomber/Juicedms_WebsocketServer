@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.juiced</groupId>
 	<artifactId>juicedWebsocketServer</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>juicedWebsocketServer</name>
 	<description>Demo project for Spring Boot</description>
 
