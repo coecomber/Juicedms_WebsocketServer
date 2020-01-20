@@ -1,6 +1,5 @@
 package com.juiced.juicedWebsocketServer.Logic.WebsocketServer.Resource;
 
-import com.juiced.juicedWebsocketServer.Logic.WebsocketServer.Model.Battle.BattleModel;
 import com.juiced.juicedWebsocketServer.Logic.WebsocketServer.Model.Character.CharacterModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping("/get/")
+@RequestMapping("/character/")
 public class CharacterResource {
 
     @Autowired
@@ -22,9 +21,9 @@ public class CharacterResource {
         return restTemplate.getForObject("http://character-service/api/public/character/getbyname/" + characterName, CharacterModel.class);
     }
 
-    @GetMapping("battletimebycharacterid/{characterId}")
-    public BattleModel battleTime(@PathVariable("characterId") int characterId){
-        return restTemplate.getForObject("http://battle-service/api/public/battle/get/" + characterId, BattleModel.class);
+    @GetMapping("characterbyid/{characterId}")
+    public CharacterModel characterModel(@PathVariable("characterId") int characterId){
+        return restTemplate.getForObject("http://character-service/api/public/character/get/" + characterId, CharacterModel.class);
     }
 
     @PostMapping("updatecharacter")

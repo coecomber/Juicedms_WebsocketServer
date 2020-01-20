@@ -1,6 +1,9 @@
 # Juicedms_WebsocketServer
  The websocket server for my microservices application
 
+
+[![Build Status](https://travis-ci.com/coecomber/Juicedms_WebsocketServer.svg)](https://travis-ci.com/coecomber/Juicedms_WebsocketServer)
+
 This application is part of multiple applications for my microservices project. The other repositories can be found on the following locations:
 * **Discovery service:** https://github.com/coecomber/Juicedms_Discovery
 * **Character service:** https://github.com/coecomber/Juicedms_Character

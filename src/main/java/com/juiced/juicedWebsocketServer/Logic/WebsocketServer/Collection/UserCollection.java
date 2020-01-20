@@ -2,6 +2,7 @@ package com.juiced.juicedWebsocketServer.Logic.WebsocketServer.Collection;
 
 import com.juiced.juicedWebsocketServer.Logic.WebsocketServer.MessageHandler.MessageSender;
 import com.juiced.juicedWebsocketServer.Logic.WebsocketServer.Model.User;
+import org.aspectj.bridge.Message;
 import org.eclipse.jetty.websocket.api.Session;
 
 import java.io.IOException;
@@ -43,7 +44,6 @@ public class UserCollection {
         User userToRemove = new User();
 
         for (User u : ConnectedUsers){
-            System.out.println("now checking " + u.getUsername());
             if(u.getSession().getLocalAddress() == session.getLocalAddress()) {
                 System.out.println("Need to remove user " + u.getUsername());
                 userToRemove = u;
@@ -51,7 +51,7 @@ public class UserCollection {
                     UserCollection.getConnectedUsers().remove(userToRemove);
                     session.close();
                     System.out.println(userToRemove.getUsername() + " removed.");
-                    MessageSender.UpdatePlayers();
+                    MessageSender.UpdateConnectedPlayers();
                     userToRemove = null;
                 }
             }

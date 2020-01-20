@@ -22,30 +22,28 @@ public class MessageHandler {
                 System.out.println("STARTBATTLE called.");
                 break;
             case "REGISTER":
-                //Checks if player has session already. If so, change the user object to the new one.
-                User user = (User) MessageConverter.FromGsonToObject(new User(), message.getJSONObject("User").toString());
-                user.setSession(session);
-                for(User currentUser : UserCollection.getConnectedUsers()){
-                    if(session == currentUser.getSession()){
-                        System.out.println("Already have session");
-                        user = UserCollection.getUserBySession(session);
-                        user.setUsername(userFromJSON.getUsername());
-                    }
-                }
-
+                User user = handleMessageLogic.checkUser(message, session, userFromJSON);
                 handleMessageLogic.sendBattleInformation(session, user);
-
                 if (UserCollection.CheckNotRegistered(user.getUsername())) {
                     UserCollection.getConnectedUsers().add(user);
-                } else{
-                    System.out.println("Player " + user.getUsername() + " reconnected.");
                 }
-
-                MessageSender.UpdatePlayers();
+                MessageSender.UpdateConnectedPlayers();
+                MessageSender.UpdateParties();
                 break;
             case "NEWFIGHT":
                 handleMessageLogic.addGold(userFromJSON, message.getInt("GoldToAdd"));
                 handleMessageLogic.sendBattleInformation(session, userFromJSON);
+                MessageSender.UpdateParties();
+                break;
+            case "CREATEPARTY":
+                System.out.println(userFromJSON.getUsername() + " wants to make a party with " + message.getString("partyToJoin"));
+                handleMessageLogic.createParty(userFromJSON.getUsername(), message.getString("partyToJoin"));
+                break;
+            case "LEAVEPARTY":
+                System.out.println("Leave party called for player: " + userFromJSON.getUsername());
+                handleMessageLogic.leaveParty(userFromJSON);
+                MessageSender.UpdateParties();
+                break;
         }
     }
 }
