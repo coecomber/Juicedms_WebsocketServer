@@ -14,3 +14,9 @@ before_install:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+addons:
+  sonarcloud:
+    organization: "coecomber"
+    token:
+      secure: $SONAR_TOKEN # encrypted value of my token in TRAVIS CI

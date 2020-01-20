@@ -2,7 +2,7 @@
  The websocket server for my microservices application
 
 
-[![Build Status](https://travis-ci.com/coecomber/Juicedms_WebsocketServer.svg)](https://travis-ci.com/coecomber/Juicedms_WebsocketServer)
+[![Build Status](https://travis-ci.com/coecomber/Juicedms_WebsocketServer.svg)](https://travis-ci.com/coecomber/Juicedms_WebsocketServer) ![Build Status](https://img.shields.io/docker/cloud/build/coecomber/juicedms_websocketserver) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=coecomber_Juicedms_WebsocketServer&metric=alert_status)](https://sonarcloud.io/dashboard?id=coecomber_Juicedms_WebsocketServer)
 
 This application is part of multiple applications for my microservices project. The other repositories can be found on the following locations:
 * **Discovery service:** https://github.com/coecomber/Juicedms_Discovery
